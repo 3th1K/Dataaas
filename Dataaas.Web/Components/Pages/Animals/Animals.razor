@@ -1,0 +1,23 @@
+﻿@page "/animals"
+@rendermode InteractiveServer
+@attribute [StreamRendering]
+
+<div class="page">
+    <PageTitle>Animals</PageTitle>
+    <div class="page-details">
+        <h1>Animals</h1>
+    </div>
+    <div class="page-content">
+        @if ((AnimalApis?.Count ?? 0) == 0)
+        {
+            <div class="spinner"></div>
+        }
+        else
+        {
+            <_ApiCardsWithPagination Apis="AnimalApis" OnClick="NavigateToApi">
+
+           </_ApiCardsWithPagination>
+        }
+    </div>
+</div>
+

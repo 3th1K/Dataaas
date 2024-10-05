@@ -1,0 +1,17 @@
+﻿<div class="animal-cards">
+    @foreach (var api in PagedApis)
+    {
+        <div class="card">
+            <div class="card-content" @onclick="() => ApiOnClick(api)">
+                <h2 class="card-title">@api.Name</h2>
+                <p class="card-description">@api.ShortDescription</p>
+            </div>
+        </div>
+    }
+</div>
+<!-- Pagination Controls -->
+<div class="pagination">
+    <button @onclick="PreviousPage" disabled="@IsFirstPage">Previous</button>
+    <span>Page @CurrentPage of @TotalPages</span>
+    <button @onclick="NextPage" disabled="@IsLastPage">Next</button>
+</div>

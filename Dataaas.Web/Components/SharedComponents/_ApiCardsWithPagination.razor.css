@@ -1,0 +1,92 @@
+﻿.animal-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Ensure 3 columns per row */
+    grid-gap: 20px; /* Space between cards */
+    width: 100%;
+    max-width: 800px; /* Set a max width to center the grid */
+    justify-content: center;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    overflow: hidden;
+    padding: 15px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    backdrop-filter: blur(10px); /* Glassmorphism */
+}
+
+    .card:hover {
+        transform: scale(1.08);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        background-color: rgba(255, 255, 255, 1);
+    }
+
+.card-content {
+    text-align: center;
+}
+
+.card-title {
+    font-size: 1.6em;
+    color: #343a40;
+    margin-bottom: 10px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.card-description {
+    font-size: 0.85em;
+    color: #6c757d;
+    transition: font-size 0.3s ease, opacity 0.3s ease;
+    opacity: 0.8;
+}
+
+.card:hover .card-description {
+    font-size: 1.1em;
+    opacity: 1;
+}
+
+.card:hover .card-title {
+    color: #3a0647;
+}
+
+.pagination {
+    grid-column: 1 / -1; /* Span across all columns (3 in this case) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+    .pagination button {
+        background-color: #3a0647;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 1rem;
+        transition: background-color 0.3s ease;
+    }
+
+        .pagination button:hover:not([disabled]) {
+            background-color: #5d0d8f;
+        }
+
+        .pagination button[disabled] {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+    .pagination span {
+        font-size: 1.2rem;
+        color: #fff;
+    }

@@ -1,0 +1,40 @@
+﻿@page "/"
+
+@rendermode InteractiveServer
+@attribute [StreamRendering]
+<PageTitle>Home</PageTitle>
+
+<h1>Do you know these facts </h1>
+
+@if (Facts.Count<=0)
+{
+    <h2>Loading ...</h2>
+}
+else
+{
+    @foreach (var fact in Facts)
+    {
+        <h2>@fact.Text</h2>
+        <hr />
+    }
+}
+
+Welcome to your new app.
+
+<button @onclick="Get">
+    get new random facts
+</button>
+
+@code
+{
+    [Inject]
+    private ICatFactsService service { get; set; }
+
+    private List<FactModel> Facts { get; set; } = [];
+
+    private async Task Get()
+    {
+        Facts = [];
+        Facts = await service.GetRandomFactsAsync(5);
+    }
+}
