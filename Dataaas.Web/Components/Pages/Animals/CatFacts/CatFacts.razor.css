@@ -1,72 +1,137 @@
-﻿.page {
-    height: 100vh;
-    padding: 20px;
-    background-image: linear-gradient(165deg, Black 0%, #3a0647 200%);
+﻿/* Base Page Layout */
+.page {
+    min-height: 100vh;
+    padding: 0;
+    background: linear-gradient(135deg, #121212, #343434);
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
+    color: #f4f4f4;
+    overflow-y: auto;
+    box-sizing: border-box;
 }
 
+/* Container for Page Content */
 .page-details {
-    margin-bottom: 30px;
+    min-height: 85vh;
+    width: 100%;
+    max-width: 800px;
+    background: #1f1f2e;
+    padding: 40px;
+    border-radius: 18px;
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.6);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-    .page-details h1 {
-        font-size: 2.5rem;
-        color: #f4f4f4;
-        text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-        text-align: center;
-        margin: 0;
+    .page-details:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
     }
 
-.page-content {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-}
+    /* Header Styling */
+    .page-details h1 {
+        font-size: 3rem;
+        color: #f4f4f4;
+        margin: 0;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.5);
+    }
 
+/* Section Styling */
 .description-section,
 .explore-section {
-    display: flex;
-    flex-direction:column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: white;
-    padding-top: 20px;
+    padding: 25px;
     border-radius: 10px;
+    color: #e1e1e6;
+    background: #262637;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 20px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
 }
-    .description-section p {
-        width: 50%;
-        padding-top: 20px;
-    }
-    .description-section section {
-        align-items:start;
-        width: 50%;
-        padding-top: 20px;
+
+    .description-section:hover,
+    .explore-section:hover {
+        transform: scale(1.03);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
     }
 
+    .description-section img.logo-image {
+        width: 140px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+    }
 
-    button {
-        background-color: #3a0647;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        margin-top: 20px;
-        cursor: pointer;
-        font-size: 1rem;
-        transition: background-color 0.3s ease;
-        border-radius: 5px;
+/* Extra Details List Styling */
+.extra-details ul {
+    list-style: none;
+    padding: 0;
+}
+
+.extra-details li {
+    margin: 8px 0;
+}
+
+/* Fact Card Styling */
+.fact-card {
+    background: #313149;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 12px 0;
+    color: #d1d8e1;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .fact-card:hover {
+        background: #3c3c54;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    }
+
+/* Button Styling */
+button {
+    padding: 12px 28px;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+    color: #f4f4f4;
+}
+
+    button.cta-button {
+        background: linear-gradient(135deg, #ef233c, #d90429);
+    }
+
+    button.secondary-button {
+        background: linear-gradient(135deg, #8d99ae, #6c757d);
     }
 
     button:hover {
-        background-color: #5d0d8f;
+        transform: translateY(-4px);
+        box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.4);
     }
 
-    button:disabled {
-        background-color: #ccc;
-        cursor: not-allowed;
+/* Spinner Styling */
+.spinner {
+    border: 8px solid rgba(255, 255, 255, 0.2);
+    border-top: 8px solid #ef233c;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 0.8s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
     }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

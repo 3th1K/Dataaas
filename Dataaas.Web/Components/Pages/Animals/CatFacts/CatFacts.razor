@@ -1,6 +1,5 @@
 ﻿@page "/animals/cat-facts"
 @rendermode InteractiveServer
-@attribute [StreamRendering]
 
 <PageTitle>Cat Facts</PageTitle>
 
@@ -13,49 +12,61 @@
             <!-- Explore API Section -->
             <div class="explore-section">
                 <h2>Explore API</h2>
-                <p>This section contains all the details about the Cat Facts API, its usage, and developer resources.</p>
-                
-                <button @onclick="BackToDescription">Back</button>
+                <p>All the details about the Cat Facts API, its usage, and developer resources.</p>
+
+                @if (isLoading)
+                {
+                    <div class="spinner"></div>
+                }
+                else
+                {
+                    <p>Welcome to your new app.</p>
+                    <div class="facts-list">
+                        @foreach (var fact in Facts)
+                        {
+                            <div class="fact-card">
+                                <h2>@fact.Text</h2>
+                                <hr />
+                            </div>
+                        }
+                    </div>
+
+                    <button class="cta-button" @onclick="GetAsync">Get New Random Facts</button>
+                    <button class="secondary-button" @onclick="BackToDescription">Back</button>
+                }
             </div>
         }
         else
         {
             <!-- Description Section -->
             <div class="description-section">
-                <img src="images/catfacts-logo.png" />
-                <p>  
+                <img src="images/catfacts-logo.png" class="logo-image" />
+                <p>
                     Using a combination of Node.js, Angular, and Tasker, this app will combine APIs and Services from the web to do just one thing… send cat facts.
                 </p>
 
                 @if (!isFullDescriptionVisible)
                 {
-                    <button @onclick="ShowMoreDescription">Read More</button>
+                    <button class="cta-button" @onclick="ShowMoreDescription">Read More</button>
                 }
 
                 @if (isFullDescriptionVisible)
                 {
-                    <section>
+                    <section class="extra-details">
                         <h3>Features</h3>
                         <ul>
-                            <li><a href="https://catfacts-api.com/docs">API Documentation</a></li>
+                            <li><a href="https://catfacts-api.com/docs" target="_blank">API Documentation</a></li>
                             <li>Follow Cat Facts on Twitter</li>
                             <li>Submit your own interesting facts</li>
                             <li>Get the Developer API</li>
                         </ul>
                         <p>
-                            Catbot that auto-replies when recipients text back.
-                            View the catversation between Catbot and your recipients.
-                            Submit your own interesting facts.
-                            Quick copy-and-paste-able cat facts with the “Get Fact” button.
-                            Add recipients by talking to the Catbot! Import all of your Google contacts at once.
-                            Admin console panel for managing the app.
-                            Twitter bot. Developer API. Support Cat Facts.
+                            Features include Catbot auto-replies, Google contacts import, admin console, and a Twitter bot.
                         </p>
                     </section>
-                    
                 }
 
-                <button @onclick="ShowExploreSection">Explore API</button>
+                <button class="cta-button" @onclick="ShowExploreSection">Explore API</button>
             </div>
         }
     </div>
@@ -64,20 +75,13 @@
 @code {
     private bool isFullDescriptionVisible = false;
     private bool isExploreSectionVisible = false;
+    private bool isLoading = false;
 
-    private void ShowMoreDescription()
-    {
-        isFullDescriptionVisible = true;
-    }
-
-    private void ShowExploreSection()
-    {
-        isExploreSectionVisible = true;
-    }
-
+    private void ShowMoreDescription() => isFullDescriptionVisible = true;
+    private void ShowExploreSection() => isExploreSectionVisible = true;
     private void BackToDescription()
     {
         isExploreSectionVisible = false;
-        isFullDescriptionVisible = false; // Reset description visibility when back is clicked
+        isFullDescriptionVisible = false;
     }
 }
